@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Tic Tac Toe</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+
+    section {
+      text-align: center;
+    }
+
+    .game--container {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      width: 306px;
+      margin: 50px auto;
+    }
+
+    .cell {
+      font-family: 'Permanent Marker', cursive;
+      width: 100px;
+      height: 100px;
+      box-shadow: 0 0 0 1px #333333;
+      border: 1px solid #333333;
+      cursor: pointer;
+
+      line-height: 100px;
+      font-size: 60px;
+    }
+  </style>
+</head>
+
+<body>
+  <P id="P"></P>
+  <section>
+    <h1 class="game--title">Tic Tac Toe</h1>
+    <div class="game--container">
+      <div data-cell-index="0" class="cell"></div>
+      <div data-cell-index="1" class="cell"></div>
+      <div data-cell-index="2" class="cell"></div>
+      <div data-cell-index="3" class="cell"></div>
+      <div data-cell-index="4" class="cell"></div>
+      <div data-cell-index="5" class="cell"></div>
+      <div data-cell-index="6" class="cell"></div>
+      <div data-cell-index="7" class="cell"></div>
+      <div data-cell-index="8" class="cell"></div>
+    </div>
+    <h2 class="game--status"></h2>
+    <button class="game--restart">Restart Game</button>
+    <script src="play.js">
+      document.querySelector('.game--status').innerHTML = "It's X's turn";
+      var cells = document.querySelectorAll(".game--container div");
+      xo = 0;
+      var won = 0;
+      for (var i = 0; i < cells.length; i++) {
+        cells[i].addEventListener("click", all);
+
+        function all() {
+          var
+            status = document.querySelector('.game--status');
+          if (this.innerHTML === "X") {
+            this.innerHTML = "X";
+          } else if (this.innerHTML === "O") {
+            this.innerHTML = "O";
+          } else if (won === 1 && this.innerHTML == "") {
+            this.innerHTML = "";
+          } else if (xo % 2 === 0 && this.innerHTML == "") {
+            this.innerHTML = "X";
+            xo++;
+            status.innerHTML = "It's O's turn";
+          } else if (xo % 2 === 1 && this.innerHTML == "") {
+            this.innerHTML = "O";
+            xo++;
+            status.innerHTML = "It's X's turn";
+          }
+          dontlet();
+
+          function getwinner() {
+            if (cells[0].innerHTML == "X" && cells[1].innerHTML == "X" &&  cells[2].innerHTML == "X") {
+              document.querySelector('.game--status').innerHTML = "Player X has won";
+              won = 1;
+            } else  if (cells[3].innerHTML == "X" && cells[4].innerHTML == "X" && cells[5].innerHTML == "X") {
+              document.querySelector('.game--status').innerHTML = "Player X has won";
+              won = 1;
+            } else if (cells[6].innerHTML == "X" && cells[7].innerHTML == "X" && cells[8].innerHTML == "X") {
+              document.querySelector('.game--status').innerHTML = "Player X has won";
+              won = 1;
+            } else if (cells[0].innerHTML == "X" && cells[3].innerHTML == "X" && cells[6].innerHTML == "X") {
+              document.querySelector('.game--status').innerHTML = "Player X has won";
+              won = 1;
+            } else if (cells[1].innerHTML == "X" &&  cells[4].innerHTML == "X" && cells[7].innerHTML == "X") {
+              document.querySelector('.game--status').innerHTML = "Player X has won";
+              won = 1;
+            } else if (cells[2].innerHTML == "X" && cells[5].innerHTML == "X" && cells[8].innerHTML == "X") {
+              document.querySelector('.game--status').innerHTML = "Player X has won";
+              won = 1;
+            } else if (cells[0].innerHTML == "X" && cells[4].innerHTML == "X" && cells[8].innerHTML == "X") {
+              document.querySelector('.game--status').innerHTML = "Player X has won";
+              won = 1;
+            } else if (cells[6].innerHTML == "X" && cells[4].innerHTML == "X" && cells[2].innerHTML == "X") {
+              document.querySelector('.game--status').innerHTML = "Player X has won";
+              won = 1;
+            } else if (cells[0].innerHTML == "O" && cells[1].innerHTML == "O" && cells[2].innerHTML == "O") {
+              document.querySelector('.game--status').innerHTML = "Player O has won";
+              won = 1;
+            } else if (cells[3].innerHTML == "O" & cells[4].innerHTML == "O" && cells[5].innerHTML == "O") {
+              document.querySelector('.game--status').innerHTML = "Player O has won";
+              won = 1;
+            } else if (cells[6].innerHTML == "O" &  cells[7].innerHTML == "O" && cells[8].innerHTML == "O") {
+              document.querySelector('.game--status').innerHTML = "Player O has won";
+              won = 1;
+            } else if (cells[0].innerHTML == "O" && cells[3].innerHTML == "O" && cells[6].innerHTML == "O") {
+              document.querySelector('.game--status').innerHTML = "Player O has won";
+              won = 1;
+            } else if (cells[1].innerHTML == "O" && cells[4].innerHTML == "O" && cells[7].innerHTML == "O") {
+              document.querySelector('.game--status').innerHTML = "Player O has won";
+              won = 1;
+            } else if (cells[2].innerHTML == "O" && cells[5].innerHTML == "O" && cells[8].innerHTML == "O") {
+              document.querySelector('.game--status').innerHTML = "Player O has won";
+              won = 1;
+            } else if (cells[0].innerHTML == "O" && cells[4].innerHTML == "O" && cells[8].innerHTML == "O") {
+              document.querySelector('.game--status').innerHTML = "Player O has won";
+              won = 1;
+            } else if (cells[6].innerHTML == "O" && cells[4].innerHTML == "O" && cells[2].innerHTML == "O") {
+              document.querySelector('.game--status').innerHTML = "Player O has won";
+              won = 1;
+            } else {
+              if (xo > 8 && won == 0) {
+                document.querySelector('.game--status').innerHTML = "Game ended in a draw";
+
+              }
+
+            }
+          }
+          getwinner();
+        }
+      }
+
+      function dontlet() {
+        if (won == 1) {
+          for (var i = 0; i < cells.length; i++) {
+            cells[i].removeEventListener("click", all);
+          }
+        }
+      }
+      dontlet();
+      let
+        restart = document.querySelector('.game--restart');
+      restart.addEventListener("click", restartgame);
+
+      function
+      restartgame() {
+        for (var i = 0; i < cells.length; i++) {
+          cells[i].innerHTML = "";
+          cells[i].addEventListener('click', all);
+        }
+        won = 0;
+        document.querySelector('.game--status').innerHTML = "It's X's turn";
+        xo = 0;
+      }
+    </script>
+
+
+</html>
